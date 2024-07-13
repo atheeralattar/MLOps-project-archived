@@ -1,5 +1,56 @@
 # MLOps-project
 
+# MLOps Zoomcamp Project
+
+## Flight Price Prediction
+
+### 1. Problem Statement
+
+- [ ] Clear problem statement, describes the business need, the stakeholders and ROI of the the solution
+
+### 2. Dataset
+
+- [ ] Find a suitable dataset that can help answering the business question above
+
+### 3. Modeling
+
+#### 3.1 Basic Model
+
+- [ ] Data Loader
+- [ ] Data Prep
+- [ ] Ferature Engineering
+- [ ] Basic Modeling
+- [ ] Prediction
+- [ ] Evaluation
+- [ ] Monitoring
+- [ ] Tracking
+- [ ] Serving
+- [ ] Model GUI
+
+#### 3.2 Tracking
+
+#### 3.3 Monitoring and Evaluation
+
+#### 3.4 Registry
+
+#### 3.5 Deployment
+
+#### 3.6 Retraining Orchestration
+
+#### 3.7 Serving and Packaging
+
+#### 3.8 Model Interaction GUI
+
+### 4. Best Practices
+
+### 5. Tecchnologies Used
+
+### 6. Deployement Example
+
+
+
+---
+
 
 Copied from dtc-mlops - zoomcamp
 
