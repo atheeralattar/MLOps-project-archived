@@ -5,20 +5,40 @@
 ## Flight Price Prediction
 
 ### 1. Problem Statement
+If you want to book a flight chances that you will find several places offer the same flight with different prices. The question is, how do you know that you are getting a good deal? what is the average prices for your flight and what are the factors that play in the price prediction. This project isn't focused to perform full prediction model to predict the price, but rather to build couple of basic models and use that as a component in our MLOps project. 
 
-- [ ] Clear problem statement, describes the business need, the stakeholders and ROI of the the solution
+![alt text](image.png)\
+*Generated using Google Gemini*
+
+
+
+
+
+
+- [X] Clear problem statement, describes the business need, the stakeholders and ROI of the the solution
 
 ### 2. Dataset
 
-- [ ] Find a suitable dataset that can help answering the business question above
+The dataset used in the project is [flights iternaries from Expedia](https://www.kaggle.com/datasets/dilwong/flightprices) for the period between 2022-04-16 and 2022-10-05. Total of **27** columns and 82,138,754 rows. File size is ~30GB. More information about the meta data can be accessed in [Dillon Wong's Github Repo](https://github.com/dilwong/FlightPrices). 
+
+- [x] Find a suitable dataset that can help answering the business question above
+
+### 3. Data Prep
+#### 3.1. Partial Data Loader (partial_data_loader.py)
+This function partially loads the csv file by specifying number of rows to sample.
+#### 3.2. Full Data Loader (full_data_loader.py)
+This function loads the full dataset (~30GB)
+#### 3.3. Data Prep (data_prep.py)
+
+- [x] Data Loader
+- [ ] Data Prep
+- [ ] Ferature Engineering
+
 
 ### 3. Modeling
 
 #### 3.1 Basic Model
 
-- [ ] Data Loader
-- [ ] Data Prep
-- [ ] Ferature Engineering
 - [ ] Basic Modeling
 - [ ] Prediction
 - [ ] Evaluation
