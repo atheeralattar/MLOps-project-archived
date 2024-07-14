@@ -33,6 +33,7 @@ This function loads the full dataset (~30GB)
 
 - [x] Data Loader
 - [ ] Add making small dataset code to the initialization code
+- [ ] Create a feature (Days before trip)
 - [x] Data Prep
 - [x] Ferature Engineering
 
