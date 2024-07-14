@@ -24,7 +24,7 @@ The dataset used in the project is [flights iternaries from Expedia](https://www
 - [x] Find a suitable dataset that can help answering the business question above
 
 ### 3. Data Prep (data_prep.py)
-This function does the needed data cleansing, dates conversion. Additionl features were created (hours, day, month) for both arrival and departure.
+This function does the needed data cleansing, dates conversion. Additionl features were created (hours, day, month) for both arrival and departure dates.
 #### 3.1. Partial Data Loader (partial_data_loader.py)
 This function partially loads the csv file by specifying number of rows to sample.
 #### 3.2. Full Data Loader (full_data_loader.py)
