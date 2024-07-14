@@ -31,8 +31,9 @@ This function loads the full dataset (~30GB)
 #### 3.3. Data Prep (data_prep.py)
 
 - [x] Data Loader
-- [ ] Data Prep
-- [ ] Ferature Engineering
+- [x] Add making small dataset to the initialization code
+- [x] Data Prep
+- [x] Ferature Engineering
 
 
 ### 3. Modeling

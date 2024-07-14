@@ -1,0 +1,12 @@
+Field
+searchDate
+flightDate
+startingAirport
+destinationAirport
+fareBasisCode
+isBasicEconomy
+isRefundable
+isNonStop
+totalFare
+segmentsDepartureTimeEpochSeconds
+segmentsArrivalTimeEpochSeconds
