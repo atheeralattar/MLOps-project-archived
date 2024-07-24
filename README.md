@@ -30,33 +30,44 @@ This function partially loads the csv file by specifying number of rows to sampl
 #### 3.2. Full Data Loader (full_data_loader.py)
 This function loads the full dataset (~30GB)
 #### 3.3. Data Prep (data_prep.py)
+This script processes the raw data and output a subset of the columns that we want to include them in our project, it also creates an extra feature (days before travel) to be added to the predictors set. The output dataframe will be used in the modeling module. It also cleans up the dataset and converts the linux style dates to a month, day, hour columns. It's worth mentioning here that our focus is on the the MLOps part, so data preparation was kept to minimal.
+
+
+
 
 - [x] Data Loader
 - [ ] Add making small dataset code to the initialization code
-- [ ] Create a feature (Days before trip)
+- [x] Create a feature (Days before trip)
 - [x] Data Prep
 - [x] Ferature Engineering
 
 
-### 3. Modeling
-
-#### 3.1 Basic Model
-
-- [ ] Basic Modeling
-- [ ] Prediction
+### 3. Modeling (modeling.py)
+- [x] Basic Modeling
+- [x] Prediction
+- [x] Tracking
 - [ ] Evaluation
 - [ ] Monitoring
-- [ ] Tracking
 - [ ] Serving
 - [ ] Model GUI
 
-#### 3.2 Tracking
+#### 3.1 Basic Model
+I have tried three models:
+* RandomForestRegressor
+* GradientBoostingRegressor
+* ExtraTreesRegressor
 
+evaulation metrics were R^2, RMSE and both were logged along with training visuals.
+
+#### 3.2 Tracking
+Mlflow was used to track modeling expirements, register models and serve a command line interface to test the model. Another helper function was created to perform most of the logging tasks.
 #### 3.3 Monitoring and Evaluation
 
 #### 3.4 Registry
 
-#### 3.5 Deployment
+### Deployment
+#### Local Deployment 
+![alt text](local-deployment.png)
 
 #### 3.6 Retraining Orchestration
 
@@ -68,7 +79,7 @@ This function loads the full dataset (~30GB)
 
 ### 5. Tecchnologies Used
 
-### 6. Deployement Example
+### 6. Execusion Examples
 
 
 

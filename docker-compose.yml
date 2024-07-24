@@ -20,8 +20,8 @@ services:
   mlflow:
     build:
        context: .
-       dockerfile: Dockerfile
-    command: ["mlflow", "server", "--host", "0.0.0.0", "--port", "5000"]
+       dockerfile: ./docker-files/Dockerfile.mlflow
+    command: mlflow server -h 0.0.0.0 -p 5000 --backend-store-uri=sqlite:///mlflow.db
     ports:
       - "5000:5000"
     environment:
@@ -31,10 +31,7 @@ services:
       - mlflow_artifacts:/mlflow/artifacts
     networks:
       - backend-server
-
 volumes:
-  postgres_data:
   mlflow_artifacts:
-
 networks:
   backend-server:
