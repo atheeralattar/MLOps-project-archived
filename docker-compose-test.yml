@@ -20,18 +20,9 @@ services:
       - "6789:6789"
     volumes:
       - ./src:/home/src/your_codebase
+      - ./dataset://home/src/your_codebase/dataset
     environment:
       - USER_CODE_PATH=/home/src/your_codebase
-  your_app:
-    build:
-      context: .
-      dockerfile: Dockerfile.test
-    volumes:
-      - ./your_codebase:/app/your_codebase
-    depends_on:
-      - mlflow
-      - mageai
-    environment:
       - MLFLOW_TRACKING_URI=http://mlflow:5000
       - MAGE_API_URL=http://mageai:6789
       

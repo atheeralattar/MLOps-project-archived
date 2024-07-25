@@ -5,7 +5,7 @@ This module prepares the data for training, edit dates, check types and feature 
 import pandas as pd
 
 
-def data_prep(df: pd.DataFrame, columns_path: str, dist_matrix: str) -> pd.DataFrame:
+def data_prep(df: pd.DataFrame, columns_path: str, dist_matrix: pd.DataFrame) -> pd.DataFrame:
     """
     creating a subset with columns wanted.
     """
@@ -15,7 +15,6 @@ def data_prep(df: pd.DataFrame, columns_path: str, dist_matrix: str) -> pd.DataF
 
     # creating a subset of the dataframe
     columns = pd.read_csv(columns_path).iloc[:, 0].tolist()
-    
     df = df[columns]
 
     # # selecting the first data in segmentsDepartureTimeEpochSeconds
