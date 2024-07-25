@@ -1,0 +1,10 @@
+Field
+searchDate
+flightDate
+startingAirport
+destinationAirport
+isBasicEconomy
+isRefundable
+isNonStop
+totalFare
+segmentsDepartureTimeEpochSeconds
