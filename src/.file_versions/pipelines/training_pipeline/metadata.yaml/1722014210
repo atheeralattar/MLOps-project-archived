@@ -23,6 +23,7 @@ blocks:
   downstream_blocks:
   - mode_training
   - model_training_nn
+  - creative_star
   executor_config: null
   executor_type: local_python
   has_callback: false
@@ -84,6 +85,22 @@ blocks:
   upstream_blocks:
   - data_prep
   uuid: model_training_nn
+- all_upstream_blocks_executed: true
+  color: blue
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: creative star
+  retry_config: null
+  status: executed
+  timeout: null
+  type: custom
+  upstream_blocks:
+  - data_prep
+  uuid: creative_star
 cache_block_output_in_memory: false
 callbacks: []
 concurrency_config: {}

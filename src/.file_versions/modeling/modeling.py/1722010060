@@ -48,9 +48,7 @@ def train(df, tracking_uri, exp_name):
 def train_nn(df, tracking_uri, exp_name, **kwargs):
     mlflow.set_tracking_uri(tracking_uri)
     mlflow.set_experiment(exp_name)
-    for model_class in [MLPRegressor]:
         with mlflow.start_run():
-            mlflow.sklearn.autolog()
             target = 'totalFare'
             X = df.drop(target, axis=1)
             mlflow.log_param('features', json.dumps(list(X.columns)))
@@ -72,34 +70,27 @@ def train_nn(df, tracking_uri, exp_name, **kwargs):
             # modeling
             mlp = MLPRegressor(random_state=42, max_iter=500)
             param_grid = {'hidden_layer_sizes': [(50,), (100,), (50, 50), (100, 50)],
-                            'activation': ['relu', 'tanh'],
-                            'alpha': [0.0001, 0.001, 0.01],
-                            'learning_rate': ['constant', 'adaptive'],}   
+                          'activation': ['relu', 'tanh'],
+                          'alpha': [0.0001, 0.001, 0.01],
+                          'learning_rate': ['constant', 'adaptive'],}   
 
             # grid search
-            grid_search = GridSearchCV(mlp, param_grid, cv=5, scoring='neg_mean_squared_error', n_jobs=-1, verbose=2)
+            rid_search = GridSearchCV(mlp, param_grid, cv=5, scoring='neg_mean_squared_error', n_jobs=-1)
             grid_search.fit(X_train_scaled, y_train)
 
             best_mlp = grid_search.best_estimator_
             best_params = grid_search.best_params_
             print("Best parameters:", best_params)
-            mlflow.log_param('Best parameters', json.dumps(list(best_params)))
-            mlflow.log_param('data size', X_train.shape)            
+
             # Step 8: Make predictions using the best model
             y_pred = best_mlp.predict(X_test_scaled)
 
             # Step 9: Evaluate the model
             mse = mean_squared_error(y_test, y_pred)
             r2 = r2_score(y_test, y_pred)
-            # model = model_class()
-            # signature = infer_signature(X_test, best_mlp.predict(X_test))
-            # mlflow.sklearn.log_model(model, "model", signature=signature)
-            # MODEL_TAG = model_class.__name__
-            # args = [model, MODEL_TAG, X_train, y_train, X_test, y_test]
-            # mlflow_default_logging(*args)
+
             print(f"Mean Squared Error: {mse}")
             print(f"R-squared Score: {r2}")
-            
 
 
 

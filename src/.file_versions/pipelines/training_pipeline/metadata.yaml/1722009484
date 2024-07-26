@@ -22,7 +22,6 @@ blocks:
       path: transformers/data_prep.py
   downstream_blocks:
   - mode_training
-  - model_training_nn
   executor_config: null
   executor_type: local_python
   has_callback: false
@@ -55,7 +54,8 @@ blocks:
 - all_upstream_blocks_executed: true
   color: blue
   configuration: {}
-  downstream_blocks: []
+  downstream_blocks:
+  - model_training_nn
   executor_config: null
   executor_type: local_python
   has_callback: false
@@ -68,7 +68,7 @@ blocks:
   upstream_blocks:
   - mode_training
   uuid: best_model_registry
-- all_upstream_blocks_executed: true
+- all_upstream_blocks_executed: false
   color: pink
   configuration: {}
   downstream_blocks: []
@@ -78,11 +78,11 @@ blocks:
   language: python
   name: model_training_nn
   retry_config: null
-  status: updated
+  status: not_executed
   timeout: null
   type: custom
   upstream_blocks:
-  - data_prep
+  - best_model_registry
   uuid: model_training_nn
 cache_block_output_in_memory: false
 callbacks: []

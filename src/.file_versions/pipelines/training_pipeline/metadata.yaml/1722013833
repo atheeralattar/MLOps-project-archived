@@ -84,6 +84,36 @@ blocks:
   upstream_blocks:
   - data_prep
   uuid: model_training_nn
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: dark merchant
+  retry_config: null
+  status: updated
+  timeout: null
+  type: scratchpad
+  upstream_blocks: []
+  uuid: dark_merchant
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: organic cedar
+  retry_config: null
+  status: not_executed
+  timeout: null
+  type: data_loader
+  upstream_blocks: []
+  uuid: organic_cedar
 cache_block_output_in_memory: false
 callbacks: []
 concurrency_config: {}

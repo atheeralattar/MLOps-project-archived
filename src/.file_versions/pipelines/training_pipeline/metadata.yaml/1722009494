@@ -22,7 +22,6 @@ blocks:
       path: transformers/data_prep.py
   downstream_blocks:
   - mode_training
-  - model_training_nn
   executor_config: null
   executor_type: local_python
   has_callback: false
@@ -78,11 +77,10 @@ blocks:
   language: python
   name: model_training_nn
   retry_config: null
-  status: updated
+  status: not_executed
   timeout: null
   type: custom
-  upstream_blocks:
-  - data_prep
+  upstream_blocks: []
   uuid: model_training_nn
 cache_block_output_in_memory: false
 callbacks: []
