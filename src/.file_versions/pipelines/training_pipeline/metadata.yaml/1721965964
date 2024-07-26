@@ -51,7 +51,7 @@ blocks:
   upstream_blocks:
   - data_prep
   uuid: mode_training
-- all_upstream_blocks_executed: false
+- all_upstream_blocks_executed: true
   color: blue
   configuration: {}
   downstream_blocks: []

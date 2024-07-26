@@ -51,7 +51,7 @@ blocks:
   upstream_blocks:
   - data_prep
   uuid: mode_training
-- all_upstream_blocks_executed: false
+- all_upstream_blocks_executed: true
   color: blue
   configuration: {}
   downstream_blocks: []
@@ -67,6 +67,21 @@ blocks:
   upstream_blocks:
   - mode_training
   uuid: best_model_registry
+- all_upstream_blocks_executed: true
+  color: blue
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: lyrical sky
+  retry_config: null
+  status: executed
+  timeout: null
+  type: custom
+  upstream_blocks: []
+  uuid: lyrical_sky
 cache_block_output_in_memory: false
 callbacks: []
 concurrency_config: {}
@@ -96,8 +111,9 @@ variables:
   input_data: /home/src/your_codebase/dataset/itineraries_small.csv
   input_data_3k: /home/src/your_codebase/dataset/df_ready_3000.csv
   my_list:
-  - Atheer
-  - Attar
+  - 1
+  - 2
+  - 3
   tracking_uri: http://mlflow:5000
 variables_dir: /home/src/mage_data/your_codebase
 widgets: []

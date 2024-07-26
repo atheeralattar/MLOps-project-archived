@@ -51,7 +51,7 @@ blocks:
   upstream_blocks:
   - data_prep
   uuid: mode_training
-- all_upstream_blocks_executed: false
+- all_upstream_blocks_executed: true
   color: blue
   configuration: {}
   downstream_blocks: []
@@ -95,9 +95,6 @@ variables:
   exp_name: mlflow_testing
   input_data: /home/src/your_codebase/dataset/itineraries_small.csv
   input_data_3k: /home/src/your_codebase/dataset/df_ready_3000.csv
-  my_list:
-  - Atheer
-  - Attar
   tracking_uri: http://mlflow:5000
 variables_dir: /home/src/mage_data/your_codebase
 widgets: []

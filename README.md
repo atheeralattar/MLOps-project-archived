@@ -51,20 +51,22 @@ This script processes the raw data and output a subset of the columns that we wa
 - [ ] Serving
 - [ ] Model GUI
 
-#### 3.1 Basic Model
+#### 3.1 Models
 I have tried three models:
-* RandomForestRegressor
-* GradientBoostingRegressor
-* ExtraTreesRegressor
+* LinearRegression
+* Lasso
+* Ridge
 
 evaulation metrics were R^2, RMSE and both were logged along with training visuals.
 
-#### 3.2 Tracking
+#### 3.2 Orchestration and Training
+Mage was used to achieve the training, logging, registry and serving. Couple of issues were faced due to the size of the data, the product itself is relatively new. Below is a screenshot for one of the pipelines.
+![alt text](image-1.png)
+#### 3.3 Tracking
 Mlflow was used to track modeling expirements, register models and serve a command line interface to test the model. Another helper function was created to perform most of the logging tasks.
-#### 3.3 Monitoring and Evaluation
 
 #### 3.4 Registry
-
+#### 3.3 Monitoring and Evaluation
 ### Deployment
 #### Local Deployment 
 ![alt text](local-deployment.png)

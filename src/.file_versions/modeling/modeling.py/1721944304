@@ -18,7 +18,7 @@ import json
 def train(df, tracking_uri, exp_name):
     mlflow.set_tracking_uri(tracking_uri)
     mlflow.set_experiment(exp_name)
-    for model_class in [LinearRegression, Lasso, Ridge]:
+    for model_class in [LinearRegression]:
         with mlflow.start_run():
                 target = 'totalFare'
                 X = df.drop(target, axis=1)

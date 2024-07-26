@@ -45,13 +45,13 @@ blocks:
   language: python
   name: mode_training
   retry_config: null
-  status: executed
+  status: updated
   timeout: null
   type: custom
   upstream_blocks:
   - data_prep
   uuid: mode_training
-- all_upstream_blocks_executed: false
+- all_upstream_blocks_executed: true
   color: blue
   configuration: {}
   downstream_blocks: []
