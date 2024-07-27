@@ -61,7 +61,7 @@ evaulation metrics were R^2, RMSE and both were logged along with training visua
 
 #### 3.2 Orchestration and Training
 Mage was used to achieve the training, logging, registry and serving. Couple of issues were faced due to the size of the data, the product itself is relatively new. Below is a screenshot for one of the pipelines.
-![alt text](image-1.png)
+![alt text](image-2.png)
 #### 3.3 Tracking
 Mlflow was used to track modeling expirements, register models and serve a command line interface to test the model. Another helper function was created to perform most of the logging tasks.
 

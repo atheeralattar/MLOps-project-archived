@@ -35,6 +35,6 @@ def data_prep(df: pd.DataFrame, columns_path: str, dist_matrix: str) -> pd.DataF
     df['flightDate'] = pd.to_datetime(df['flightDate'])
     df['days_to_departure'] = (df['flightDate'] - df['searchDate']).dt.days
     df.drop(['flightDate', 'searchDate'], axis=1, inplace=True)
-    df = pd.merge(df, dm, on=['destinationAirport', 'destinationAirport'], how='left' )
-    df.drop(df.columns[df.columns.str.contains('Airport')], axis =1, inplace= True)
+    df = pd.merge(df, dm, on=['destinationAirport', 'startingAirport'], how='left' , suffixes=(False, False))
+    #df.drop(df.columns[df.columns.str.contains('Airport')], axis =1, inplace= True)
     return df
