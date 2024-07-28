@@ -12,7 +12,7 @@ reload(modeling.modeling)
 #from tracking.mlflow import mlflow_default_logging
 
 @custom
-def transform_custom(data, *args, **kwargs):
+def transform_custom(data[:1000], *args, **kwargs):
     """
     args: The output from any upstream parent blocks (if applicable)
 
@@ -20,7 +20,7 @@ def transform_custom(data, *args, **kwargs):
         Anything (e.g. data frame, dictionary, array, int, str, etc.)
     """
     tracking_uri = kwargs['tracking_uri']
-    train(data[:1000],tracking_uri)
+    train(data,tracking_uri)
     return 'training complete'
 
 

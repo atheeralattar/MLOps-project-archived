@@ -12,87 +12,102 @@ def mlflow_default_logging(model, model_tag, X_train, y_train, X_test, y_test):
     r2=r2_score(y_test, yp_test)
     mlflow.log_metric("r2_test", r2)
     
-def model_registry(exp_name):
+def check_registry_if_not_exist(experiment):
+    """ checks and creates a registry if not created
+        and register the top run from that experiment
+    Args:
+        experiment_name (obj): experiment object
+    """
     client = MlflowClient()
-    experiment = mlflow.get_experiment_by_name(exp_name)
-    experiment_id = experiment.experiment_id
+    registered_models = client.search_registered_models()
+    top_run = pick_top_run(experiment, 'r2_test')
+    model_uri = f"runs:/{top_run.info.run_id}/model"
     
+    # If the experiment does not exist, create it
+    if registered_models is None:
+       registered_models = mlflow.register_model(model_uri, experiment.expermint_name)
+    
+        
+
+
+def check_expirement_if_not_exist(experiment_name):
+    """ checks if an experiment is there before creating one
+
+    Args:
+        experiment_name (str): experiment name to check
+    """
+    experiment = mlflow.get_experiment_by_name(experiment_name)
+    # If the experiment does not exist, create it
     if experiment is None:
-        experiment_id = mlflow.create_experiment(exp_name)
+       experiment = mlflow.create_experiment(experiment_name)
+       mlflow.set_experiment(experiment_name)
+       print(f'created experiment: {experiment_name}')
     else:
         experiment_id = experiment.experiment_id
+        mlflow.set_experiment(experiment_name)
+        print('experiment exists already.')
 
-    # Query all runs in the experiment
+
+
+
+
+def pick_top_run(experiment: object, parameter):
+    """ Picks the top run for a given experiment
+
+    Args:
+        experiment (obj): experiment object coming from search expirements
+        parameter (str): parameter needed to sort the experiments according to
+
+    Returns:
+        top_run (obj): run object from search run
+    """
+    client = MlflowClient()
+    for run in client.search_runs(experiment.experiment_id):
+        top_run = client.search_runs(
+        experiment_ids=experiment.experiment_id,
+        filter_string="metrics.r2_test > 0",
+        order_by=["metrics.r2_test DESC"],
+        max_results = 1    
+        )
+    return top_run
     
-    runs = client.search_runs(
+    
+    
+    
+def model_registry():
+    client = MlflowClient()
+    experiments = mlflow.search_experiments()
+    for experiment in experiments:
+        pick_top_run(experiment, 'r2_test')
+        
+    
+    
+    # Query all runs in the experiment and output the top 3
+    top_runs = client.search_runs(
     experiment_ids=experiment_id,
+    order_by=["metrics.r2_test DESC"],
+    filter_string="metrics.r2_test > .4",
+    max_results = 3    
+    )
     
-    max_results=3,)
-    for run in runs:
-        print(run.data.metrics['r2_test'])
-    # Sort the runs by R2 test score and select the top three
-    # Assuming the metric is named 'r2_test'
-    top_runs = runs#.sort_values("metrics.r2_test", ascending=False).head(3)
-    # # Define the names for the top 3 models
-    top_model_names = ["Top_Model_1", "Top_Model_2", "Top_Model_3"]
-    
-    # for index, (_, run) in enumerate(top_runs.iterrows()):
-    #     print(run.data.metrics)[1]['r2_test']
-    #     #print(f"run id: {run.info.run_id}, rmse: {run.data.metrics['r2_test']:.4f}")
-    # #     #r2_score = run.data.metrics["r2_test"]
-    # #     model_name = top_model_names[index]
-        
-    # #     # Load the model from the run
-    #     model_uri = f"runs:/{run_id}/model"
-        
-    # #     # Check if the model already exists
-    #     try:
-    #         existing_versions = client.get_latest_versions(model_name)
-    #     except mlflow.exceptions.RestException:
-    #         existing_versions = []
-        
-    #     if existing_versions:
-    #         # If the model exists, create a new version
-    #         model_version = mlflow.register_model(model_uri, model_name)
-    #         print(f"Created new version of existing model: {model_name}, version: {model_version.version}, R2 score: {r2_score}")
-    #     else:
-    #         # If the model doesn't exist, register it
-    #         model_version = mlflow.register_model(model_uri, model_name)
-    #         print(f"Registered new model: {model_name}, version: {model_version.version}, R2 score: {r2_score}")
-            
-    #     # Update the model description
-    #     client.update_registered_model(
-    #         name=model_name,
-    #         description=f"Model with R2 test score: {r2_score}"
-    #     )
-        
-    #     # Add tags to the model version
-    #     client.set_model_version_tag(
-    #         name=model_name,
-    #         version=model_version.version,
-    #         key="r2_test_score",
-    #         value=str(r2_score)
-    #     )
-        
-    #     # Transition the model to 'Production' stage
-    #     client.transition_model_version_stage(
-    #         name=model_name,
-    #         version=model_version.version,
-    #         stage="Production"
-    #     )
-        
-    #     # Archive older versions
-    #     for old_version in existing_versions:
-    #         if old_version.version != model_version.version:
-    #             client.transition_model_version_stage(
-    #                 name=model_name,
-    #                 version=old_version.version,
-    #                 stage="Archived"
-    #             )
-
-    # print("Top 3 models have been updated and registered.")
+    # register these 3 models if they are not registered.
+    model_registry_name = "mlflow_test"
+    for run in top_runs:
+        run_id = run.info.run_id
+        model_uri = f"runs:/{run_id}/model"
+        model_version = None
+        mlflow.register_model(model_uri, "mlflow-testing")
 
 
-
-
-    
+        # # Check if the model is already registered
+        # if run_id not in registered_models:
+        #     # Register the model
+        #     result = mlflow.register_model(model_uri, model_registry_name)
+        #     model_version = result.version
+        #     new_models.append((run_id, model_version))
+        #     print(f"Registered new model '{model_registry_name}' with version {model_version}.")
+        # else:
+        #     model_version = registered_models[run_id]
+        
+        # print(f"Run ID: {run_id}, Registered Version: {model_version}")
+        

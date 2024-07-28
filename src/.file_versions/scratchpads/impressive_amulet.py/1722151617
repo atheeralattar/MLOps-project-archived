@@ -1,0 +1,26 @@
+"""
+NOTE: Scratchpad blocks are used only for experimentation and testing out code.
+The code written here will not be executed as part of the pipeline.
+"""
+import os
+os.chdir('/home/src/your_codebase')
+from tracking.mlflow import *
+from importlib import reload
+import tracking.mlflow
+reload(tracking.mlflow)
+
+from mlflow.tracking import MlflowClient
+client = MlflowClient()
+experiments = client.search_experiments()
+for exp in experiments:
+    print(exp.experiment_id, exp.name)
+    print(mlflow.search_runs(exp.experiment_id))
+
+
+
+
+
+
+
+
+

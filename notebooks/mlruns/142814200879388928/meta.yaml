@@ -1,6 +1,0 @@
-artifact_location: file:///home/atheer/Desktop/MLOps-project/notebooks/mlruns/142814200879388928
-creation_time: 1722059858062
-experiment_id: '142814200879388928'
-last_update_time: 1722059858062
-lifecycle_stage: active
-name: mlflow_testing

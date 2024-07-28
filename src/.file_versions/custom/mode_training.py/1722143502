@@ -9,7 +9,7 @@ from modeling.modeling import train
 from importlib import reload
 import modeling.modeling
 reload(modeling.modeling)
-#from tracking.mlflow import mlflow_default_logging
+from tracking.mlflow import mlflow_default_logging
 
 @custom
 def transform_custom(data, *args, **kwargs):
@@ -20,7 +20,7 @@ def transform_custom(data, *args, **kwargs):
         Anything (e.g. data frame, dictionary, array, int, str, etc.)
     """
     tracking_uri = kwargs['tracking_uri']
-    train(data[:1000],tracking_uri)
+    train(data,tracking_uri)
     return 'training complete'
 
 

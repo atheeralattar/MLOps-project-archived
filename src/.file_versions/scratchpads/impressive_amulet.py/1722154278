@@ -1,0 +1,24 @@
+"""
+NOTE: Scratchpad blocks are used only for experimentation and testing out code.
+The code written here will not be executed as part of the pipeline.
+"""
+from mlflow import MlflowClient
+import os
+os.chdir('/home/src/your_codebase')
+from tracking.mlflow import *
+from importlib import reload
+import tracking.mlflow
+reload(tracking.mlflow)
+experiment_name = 'Lasso'
+experiment.experiment_id
+client= MlflowClient()
+runs = client.search_runs(experiment_ids=[1])
+# client = MlflowClient()
+# for run in client.search_runs(experiment.experiment_id):
+#     top_run = client.search_runs(
+#     experiment_ids=experiment.experiment_id,
+#     filter_string="metrics.r2_test > 0",
+#     order_by=["metrics.r2_test DESC"],
+#     max_results = 1    
+#     )
+# # top_run

@@ -10,7 +10,7 @@ from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
-from tracking.mlflow import mlflow_default_logging
+from tracking.mlflow import mlflow_default_logging, check_expirement_if_not_exist
 import os
 import time
 import mlflow
@@ -20,11 +20,11 @@ import json
 import warnings
 
 
-def train(df, tracking_uri, exp_name):
+def train(df, tracking_uri):
     mlflow.autolog()
     mlflow.set_tracking_uri(tracking_uri)
-    mlflow.set_experiment(exp_name)
-    for model_class in [RandomForestRegressor]:
+    for model_class in [RandomForestRegressor, Lasso]:
+        check_expirement_if_not_exist(model_class.__name__)
         with mlflow.start_run() as run:
             target = 'totalFare'
             X = df.drop(target, axis=1)
@@ -50,12 +50,11 @@ def train(df, tracking_uri, exp_name):
             
 
             
-def train_nn(df, tracking_uri, exp_name, **kwargs):
+def train_nn(df, tracking_uri, **kwargs):
     warnings.filterwarnings("ignore")
     mlflow.set_tracking_uri(tracking_uri)
-    mlflow.set_experiment(exp_name)
     for model_class in [MLPRegressor]:
-        print("with mlflow.start_run()")
+        mlflow.set_experiment(model_class.__name__)
         with mlflow.start_run():
             mlflow.sklearn.autolog()
             target = 'totalFare'

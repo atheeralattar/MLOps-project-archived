@@ -1,0 +1,28 @@
+"""
+NOTE: Scratchpad blocks are used only for experimentation and testing out code.
+The code written here will not be executed as part of the pipeline.
+"""
+from mlflow import MlflowClient
+import os
+os.chdir('/home/src/your_codebase')
+from tracking.mlflow import *
+from importlib import reload
+import tracking.mlflow
+reload(tracking.mlflow)
+experiment_name = 'Lasso'
+experiment = mlflow.get_experiment_by_name(experiment_name)
+    # If the experiment does not exist, create it
+if experiment is None:
+    experiment = mlflow.create_experiment(experiment_name)
+    mlflow.set_experiment(experiment_name)
+    print(f'created experiment: {experiment_name}')
+else:
+    experiment_id = experiment.experiment_id
+    mlflow.set_experiment(experiment_name)
+    print('experiment exists already.')
+
+
+
+
+
+
